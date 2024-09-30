@@ -81,9 +81,6 @@ public class OffreController {
         offres.setTitre(offresDetails.getTitre());
         offres.setSkills(offresDetails.getSkills());
         offres.setDate_publication(offresDetails.getDate_publication());
-        offres.setDead_line(offresDetails.getDead_line());
-        offres.setMin(offresDetails.getMin());
-        offres.setMax(offresDetails.getMax());
         offres.setContenu(offresDetails.getContenu());
         offres.setDocument(offresDetails.getDocument());
         offres.setUser(offresDetails.getUser());

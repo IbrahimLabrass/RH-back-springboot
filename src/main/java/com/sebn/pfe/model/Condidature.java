@@ -1,125 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sebn.pfe.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-/**
- *
- * @author ya39o
- */
 
 @Entity
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Condidature {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
-    
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    private Long id;
+    private String firstName;
+
+    private String lastName;
+
+    private String description;
+    private String etat = "pending";
+
+    private Integer experience;
+
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
-    
-    @NotNull
-    private Integer prix;
-    
-    @NotNull
-    private Integer temps;
-    
-    @NotNull
-    private String description;
-    
-    @NotNull
-    private String etat;
-    
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "offre_id", nullable = false)
+
+    // Optional relationship with Offre
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "offer_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Offre offre;
 
-    public Condidature(Integer prix, String description, Integer temps, String etat, boolean b) {
-        this.prix = prix;
-        this.description = description;
-        this.temps = temps;
-        this.etat = etat;
-    }
-    public Condidature() {
-		
-   	}
-    
-    
-    
-    public Long getId() {
-        return id;
-    }
+    // Optional relationship with Stage
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "stage_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Stage stage;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-   
-
-    public Integer getPrix() {
-        return prix;
-    }
-
-    public void setPrix(Integer prix) {
-        this.prix = prix;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public String getEtat() {
-        return etat;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
-
-    public Offre getOffre() {
-        return offre;
-    }
-
-    public void setOffre(Offre offre) {
-        this.offre = offre;
-    }
-	public Integer getTemps() {
-		return temps;
-	}
-	public void setTemps(Integer temps) {
-		this.temps = temps;
-	}
-
-    
+    // Optional relationship with Event
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "event_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Event event;
 }

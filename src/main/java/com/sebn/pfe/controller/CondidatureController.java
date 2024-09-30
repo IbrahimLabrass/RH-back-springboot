@@ -61,10 +61,10 @@ public class CondidatureController {
        Condidature condidatures = CondidatureRepository.findById(id)
        .orElseThrow(() -> new ResourceNotFoundException("Condidature not found for this id :: " + id));
        
-       condidatures.setPrix(condidaturesDetails.getPrix());
+
        condidatures.setDescription(condidaturesDetails.getDescription());
-       condidatures.setTemps(condidaturesDetails.getTemps());
        condidatures.setEtat(condidaturesDetails.getEtat());
+
        final Condidature updatedCondidature = CondidatureRepository.save(condidatures);
        return ResponseEntity.ok(updatedCondidature);
    }

@@ -20,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
- * @author ya39o
+ * @author ibrahim
  */
 
 @Entity
@@ -37,16 +37,7 @@ public class Offre {
     
     private String date_publication;
          
-    
-    private String dead_line;
-    
-    
-    
-    private Integer min;
-    
-    
-    private Integer max;
-    
+
     
     private String contenu;
     
@@ -62,13 +53,10 @@ public class Offre {
     private User user;
 
     public Offre(Integer min, Integer max, String titre, String document, String skills, String date_publication, String dead_line, String contenu, User user, boolean b) {
-        this.id = id;
         this.titre = titre;
         this.skills = skills;
-        this.min = min;
-        this.max = max;
+
         this.date_publication = date_publication;
-        this.dead_line = dead_line;
         this.contenu = contenu;
         this.document = document;
         this.user = user;
@@ -81,12 +69,9 @@ public class Offre {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", min='" + min + '\'' +
-                ", max='" + max + '\'' +
                 ", contenu='" + contenu + '\'' +
                 ", titre='" + titre + '\'' +
                 ", skills='" + skills + '\'' +
-                ", dead_line='" + dead_line + '\'' +
                 ", date_publication='" + date_publication + '\'' +
                 ", user=" + user +
                 '}';
@@ -130,29 +115,11 @@ public class Offre {
 	public void setSkills(String skills) {
 		this.skills = skills;
 	}
-	public Integer getMin() {
-		return min;
-	}
-	public void setMin(Integer min) {
-		this.min = min;
-	}
-	public Integer getMax() {
-		return max;
-	}
-	public void setMax(Integer max) {
-		this.max = max;
-	}
 	public String getDate_publication() {
 		return date_publication;
 	}
 	public void setDate_publication(String date_publication) {
 		this.date_publication = date_publication;
-	}
-	public String getDead_line() {
-		return dead_line;
-	}
-	public void setDead_line(String dead_line) {
-		this.dead_line = dead_line;
 	}
 	public String getDocument() {
 		return document;

@@ -66,6 +66,7 @@ public class StageController {
         stage.setEndDate(stageDetails.getEndDate());
         stage.setCompany(stageDetails.getCompany());
         stage.setDescription(stageDetails.getDescription());
+        stage.setDocument(stageDetails.getDocument());
         stage.setUser(stageDetails.getUser());
 
         final Stage updatedStage = stageRepository.save(stage);
